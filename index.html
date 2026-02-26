@@ -17,10 +17,10 @@
 .hero {
   min-height:100vh; position:relative; overflow:hidden;
   display:flex; align-items:center; justify-content:center; background:var(--black);
-  padding-bottom:160px; /* space for stats bar */
+  padding-bottom:160px;
 }
 @media(max-width:767px){
-  .hero{ padding-bottom:220px; } /* 2-row stats taller on mobile */
+  .hero{ padding-bottom:220px; }
 }
 .hero-bg {
   position:absolute; inset:0;
@@ -117,6 +117,20 @@
 .ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:var(--white);z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25);font-size:1.1rem;color:var(--gold);}
 .ba-label{position:absolute;bottom:20px;font-size:0.73rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;background:rgba(0,0,0,.55);color:var(--white);padding:6px 14px;border-radius:50px;backdrop-filter:blur(8px);}
 .ba-label-before{left:20px}.ba-label-after{right:20px}
+
+/* ── TESTIMONIAL AVATAR FIX ── */
+.testi-avatar {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px;
+  min-height: 46px;
+  border-radius: 50% !important;
+  object-fit: cover;
+  border: 2px solid var(--gold-pale);
+  flex-shrink: 0;
+  display: block;
+  overflow: hidden;
+}
 </style>
 </head>
 <body data-page="home">
@@ -271,10 +285,43 @@
       <div class="gold-divider mx-auto mt-3"></div>
     </div>
     <div class="owl-carousel" id="testi-carousel">
-      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"Looks Salon has completely transformed my hair! The stylist understood exactly what I wanted. Absolutely world-class service."</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt=""><div><div class="testi-name">Priya Sharma</div><div class="testi-city">Mumbai</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"The beard grooming experience was phenomenal. Professional, hygienic, and the results exceeded my expectations."</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt=""><div><div class="testi-name">Rahul Verma</div><div class="testi-city">Delhi</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"My bridal package was everything I dreamed of. The team made me look like a queen on my wedding day!"</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt=""><div><div class="testi-name">Anita Kapoor</div><div class="testi-city">Bangalore</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"The loyalty programme is amazing! I've been visiting for 3 years and the rewards keep getting better and better."</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt=""><div><div class="testi-name">Karan Mehta</div><div class="testi-city">Pune</div></div></div></div>
+
+      <div class="testi-card">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="testi-text">"Looks Salon has completely transformed my hair! The stylist understood exactly what I wanted. Absolutely world-class service."</div>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face&q=80" alt="Priya Sharma">
+          <div><div class="testi-name">Priya Sharma</div><div class="testi-city">Mumbai</div></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="testi-text">"The beard grooming experience was phenomenal. Professional, hygienic, and the results exceeded my expectations."</div>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&q=80" alt="Rahul Verma">
+          <div><div class="testi-name">Rahul Verma</div><div class="testi-name">Delhi</div></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="testi-text">"My bridal package was everything I dreamed of. The team made me look like a queen on my wedding day!"</div>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face&q=80" alt="Anita Kapoor">
+          <div><div class="testi-name">Anita Kapoor</div><div class="testi-city">Bangalore</div></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="testi-text">"The loyalty programme is amazing! I've been visiting for 3 years and the rewards keep getting better and better."</div>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face&q=80" alt="Karan Mehta">
+          <div><div class="testi-name">Karan Mehta</div><div class="testi-city">Pune</div></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

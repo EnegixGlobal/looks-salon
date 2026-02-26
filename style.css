@@ -402,7 +402,18 @@ section { position:relative; }
 .testi-stars { color:var(--gold); margin-bottom:16px; font-size:0.9rem; }
 .testi-text { font-family:var(--font-elegant); font-size:1.12rem; color:var(--dark); line-height:1.8; font-style:italic; margin-bottom:22px; }
 .testi-author { display:flex; align-items:center; gap:14px; }
-.testi-avatar { width:46px; height:46px; border-radius:50%; object-fit:cover; border:2px solid var(--gold-pale); }
+.testi-avatar { 
+  width: 46px; 
+  height: 46px; 
+  min-width: 46px;
+  min-height: 46px;
+  border-radius: 50% !important; 
+  object-fit: cover; 
+  border: 2px solid var(--gold-pale); 
+  overflow: hidden;
+  display: block;
+  flex-shrink: 0;
+}
 .testi-name { font-size:0.88rem; font-weight:600; color:var(--black); }
 .testi-city { font-size:0.76rem; color:var(--gray-lt); }
 
