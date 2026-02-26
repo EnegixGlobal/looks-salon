@@ -67,10 +67,10 @@
           <div class="footer-logo">Looks<span>.</span></div>
           <p class="footer-desc">India's premier luxury grooming destination. 30+ years of excellence, 200+ outlets, one unwavering standard — the best.</p>
           <div class="footer-social">
-            <a href="https://www.instagram.com/looksunisexsalon/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/Looksunisexsalon/" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.youtube.com/@LooksSalon" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-            <a href="https://x.com/LooksSalonIndia" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <div class="social-icon"><i class="fab fa-instagram"></i></div>
+            <div class="social-icon"><i class="fab fa-facebook"></i></div>
+            <div class="social-icon"><i class="fab fa-youtube"></i></div>
+            <div class="social-icon"><i class="fab fa-twitter"></i></div>
           </div>
         </div>
         <div class="col-lg-2 col-md-4">

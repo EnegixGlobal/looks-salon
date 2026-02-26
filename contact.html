@@ -9,6 +9,56 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* ── Page-level responsive fixes ── */
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto !important; }
+  #cursor-dot, #cursor-ring { display: none !important; }
+}
+
+/* WhatsApp float button – mobile */
+@media (max-width: 767px) {
+  .float-wa {
+    width: 50px !important;
+    height: 50px !important;
+    bottom: 20px !important;
+    right: 18px !important;
+    font-size: 1.3rem !important;
+  }
+  /* Ensure last section doesn't get covered by WA button */
+  body { padding-bottom: 80px; }
+  footer { margin-bottom: 0 !important; }
+}
+
+/* CTA section button stack on mobile */
+@media (max-width: 767px) {
+  .cta-section .d-flex { flex-direction: column; align-items: center; }
+  .cta-section .btn-gold,
+  .cta-section .btn-gold-outline,
+  .cta-section .btn-dark { width: 100%; max-width: 300px; justify-content: center; }
+}
+</style>
+
+<style>
+/* Contact page responsive */
+@media (max-width: 991px) {
+  .contact-card { padding: 32px 24px; }
+  .map-wrap { height: 240px; }
+}
+@media (max-width: 767px) {
+  .contact-card { padding: 24px 18px; }
+  .map-wrap { height: 200px; }
+  /* Right side box padding */
+  div[style*="padding:40px"] { padding: 24px !important; }
+  /* Quick stat cards */
+  .col-md-4 div[style*="padding:24px"] { padding: 16px !important; }
+  .wa-btn, .email-btn { padding: 14px 20px !important; font-size: 0.88rem !important; }
+}
+</style>
+
 </head>
 <body data-page="contact">
 <script src="navbar.js"></script>
@@ -47,7 +97,7 @@
           </div>
           <div class="contact-info-item">
             <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-            <div><div class="contact-info-label">Email</div><div class="contact-info-value">info@lookssalon.in</div></div>
+            <div><div class="contact-info-label">Email</div><div class="contact-info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="771e191118371b18181c0404161b1819591e19">[email&#160;protected]</a></div></div>
           </div>
           <div class="contact-info-item">
             <div class="contact-icon"><i class="fas fa-clock"></i></div>
@@ -58,7 +108,7 @@
             <a href="https://wa.me/91XXXXXXXXXX?text=Hello%2C%20I%20want%20to%20book%20an%20appointment%20at%20Looks%20Salon." target="_blank" class="wa-btn">
               <i class="fab fa-whatsapp" style="font-size:1.25rem;"></i> Book via WhatsApp
             </a>
-            <a href="mailto:info@lookssalon.in?subject=Appointment%20Booking&body=Hi%2C%20I%20want%20to%20book%20an%20appointment." class="email-btn">
+            <a href="/cdn-cgi/l/email-protection#bfd6d1d9d0ffd3d0d0d4ccccded3d0d191d6d180cccaddd5dadccb82fecfcfd0d6d1cbd2dad1cb9a8d8ffdd0d0d4d6d1d899ddd0dbc682f7d69a8dfc9a8d8ff69a8d8fc8ded1cb9a8d8fcbd09a8d8fddd0d0d49a8d8fded19a8d8fdecfcfd0d6d1cbd2dad1cb91" class="email-btn">
               <i class="fas fa-envelope" style="font-size:1.1rem;"></i> Send Email
             </a>
           </div>
@@ -126,7 +176,7 @@
   <div class="container-xl text-center" style="position:relative;z-index:1;" data-aos="fade-up">
     <h2 class="cta-title">Want to Own a <em>Franchise?</em></h2>
     <p style="font-family:var(--font-elegant);font-size:1.15rem;color:rgba(255,255,255,0.5);margin:16px auto 36px;max-width:420px;line-height:1.75;">Join India's fastest-growing luxury salon chain and build your own success story.</p>
-    <a href="franchise.html" class="btn-gold"><i class="fas fa-handshake"></i> Franchise Enquiry</a>
+    <a href="franchise.html" class="btn-gold"><i class="fas fa-handshake"></i>Franchise Enquiry</a>
   </div>
 </section>
 

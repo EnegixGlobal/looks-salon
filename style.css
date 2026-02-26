@@ -596,183 +596,192 @@ footer { background:var(--black); padding:80px 0 0; }
 .card-number { font-family:var(--font-sans); font-size:1.05rem; letter-spacing:0.2em; color:rgba(0,0,0,0.6); }
 
 /* ============================================================
-   RESPONSIVE — FULLY RESPONSIVE FOR ALL SCREENS
+   RESPONSIVE
 ============================================================ */
 
-/* ── Tablet (≤991px) ── */
-@media(max-width:991px){
-  .nav-links{display:none}
-  .nav-hamburger{display:flex}
-  .container-xl{padding:0 20px}
-  .gallery-masonry{columns:2}
-  .timeline::before{left:24px}
-  .timeline-item{flex-direction:column!important;padding-left:56px;position:relative}
-  .timeline-dot{position:absolute;left:16px;margin-top:0;top:34px}
-  .timeline-spacer{display:none}
-
-  /* Sections */
-  .py-section{padding:80px 0}
-  .py-section-sm{padding:56px 0}
-
-  /* Contact */
-  .contact-card{padding:32px 24px}
-  .map-wrap{height:240px}
-
-  /* Franchise */
-  .bridal-special{padding:36px 28px}
-
-  /* Loyalty card */
-  .gold-card-scene{perspective:800px}
-
-  /* Footer */
-  footer{padding:60px 0 0}
-  .footer-bottom{flex-direction:column;text-align:center}
-
-  /* Page banner */
-  .page-banner{min-height:45vh}
-  .page-banner-title{font-size:clamp(2.2rem,6vw,4rem)!important}
+/* ── Disable custom cursor on touch devices ── */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
 }
 
-/* ── Mobile L (≤767px) ── */
-@media(max-width:767px){
-  /* Typography */
-  .section-title{font-size:clamp(1.8rem,6vw,2.8rem)!important}
-
-  /* Hero stats strip — 2 columns */
-  .hero-stats{grid-template-columns:repeat(2,1fr)!important}
-  .hero-stat{padding:16px 14px;border-right:none;border-bottom:1px solid rgba(200,151,63,0.1)}
-  .hero-stat:nth-child(odd){border-right:1px solid rgba(200,151,63,0.1)!important}
-  .hero-stat:nth-child(3),.hero-stat:nth-child(4){border-bottom:none}
-  .stat-num{font-size:1.6rem}
-
-  /* Buttons */
-  .hero-btns{flex-direction:column;align-items:center;gap:12px}
-  .btn-gold,.btn-outline-white,.btn-gold-outline,.btn-dark{width:100%;max-width:320px;justify-content:center;text-align:center}
-
-  /* Service cards — make shorter on mobile */
-  .service-card{height:380px}
-
-  /* Testimonials grid */
-  .testi-grid{grid-template-columns:1fr}
-  .tcard-featured{flex-direction:column;gap:20px}
-  .tcard-feat-meta{flex-direction:row}
-
-  /* Gallery masonry */
-  .gallery-masonry{columns:2;gap:12px}
-
-  /* Process timeline */
-  .process-timeline{flex-direction:column;align-items:flex-start;gap:0}
-  .process-step{flex-direction:row;gap:20px;width:100%;border-left:2px solid var(--gold-pale);padding-left:24px;padding-bottom:28px;position:relative}
-  .process-step::before{display:none}
-  .step-circle{position:absolute;left:-18px;top:0;flex-shrink:0}
-
-  /* Footer */
-  .footer-desc{max-width:100%}
-  .footer-social{justify-content:flex-start}
-
-  /* Contact card */
-  .contact-card{padding:28px 20px}
-
-  /* Mission Vision */
-  .mv-card{padding:36px 28px}
-
-  /* Timeline */
-  .timeline{padding:0 8px}
-
-  /* Bridal */
-  .bridal-special{padding:28px 20px}
-  .bridal-title{font-size:1.8rem!important}
-
+/* ── Tablet & below (991px) ── */
+@media (max-width: 991px) {
   /* Navbar */
-  .nav-inner{padding:14px 20px}
-  .nav-logo{font-size:1.45rem}
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-inner { padding: 16px 24px; }
+  #navbar.scrolled .nav-inner { padding: 12px 24px; }
 
-  /* Numbers band */
-  .num-cell{padding:36px 16px}
-  .num-big{font-size:2.5rem}
-}
-
-/* ── Mobile S (≤576px) ── */
-@media(max-width:576px){
-  /* Container */
-  .container-xl{padding:0 16px}
-
-  /* Typography */
-  .section-title{font-size:clamp(1.6rem,7vw,2.2rem)!important}
-
-  /* Sections */
-  .py-section{padding:60px 0}
-  .py-section-sm{padding:44px 0}
-
-  /* Gallery */
-  .gallery-masonry{columns:1}
-
-  /* Loyalty card */
-  .gold-card{width:100%;max-width:100%}
+  /* Containers */
+  .container-xl { padding: 0 20px; }
+  .py-section { padding: 80px 0; }
+  .py-section-sm { padding: 56px 0; }
 
   /* Hero */
-  .hero-content{padding:0 16px}
-  .hero-title{font-size:clamp(2.8rem,11vw,4.5rem)!important}
-  .hero-sub{font-size:1rem!important}
-  .hero-scroll{bottom:200px}
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+  }
+  .hero-stat { padding: 16px 18px; }
+  .hero-scroll { bottom: 220px; }
 
-  /* Hero stats — 2 columns, compact */
-  .hero-stats{grid-template-columns:repeat(2,1fr)!important}
+  /* Service cards — reduce fixed height */
+  .service-card { height: 420px; }
 
-  /* Buttons */
-  .d-flex.gap-3.justify-content-center.flex-wrap{flex-direction:column;align-items:center}
-  .d-flex.gap-3.flex-wrap{flex-direction:column;align-items:stretch}
+  /* Before/After */
+  .ba-wrapper { height: 360px; }
 
-  /* Service cards */
-  .service-card{height:320px}
+  /* Gallery */
+  .gallery-masonry { columns: 2; }
 
-  /* Invest cards */
-  .invest-card{padding:24px 20px}
+  /* Timeline */
+  .timeline::before { left: 24px; }
+  .timeline-item {
+    flex-direction: column !important;
+    padding-left: 56px;
+    position: relative;
+  }
+  .timeline-dot { position: absolute; left: 16px; margin-top: 0; top: 34px; }
+  .timeline-spacer { display: none; }
+
+  /* Stats counters */
+  .stat-counter-card { padding: 40px 20px; }
 
   /* Why cards */
-  .why-card-3d{padding:28px 22px}
+  .why-card { padding: 32px 24px; }
 
-  /* Stats section */
-  .stat-counter-card{padding:28px 16px}
-
-  /* Navbar */
-  .nav-inner{padding:14px 16px}
-
-  /* Page banner */
-  .page-banner{min-height:40vh}
-  .page-banner-content{padding:0 16px}
-
-  /* Footer */
-  footer .row{gap:32px!important}
-
-  /* Process timeline */
-  .step-title{font-size:0.9rem}
-  .step-desc{font-size:0.8rem}
-
-  /* Mobile nav */
-  .mobile-nav a{font-size:1rem;padding:14px 22px}
+  /* Mission/Vision cards */
+  .mv-card { padding: 44px 36px; }
 
   /* Bridal special */
-  .bridal-special{padding:24px 18px}
+  .bridal-special { padding: 40px 32px; }
 
-  /* Contact */
-  .contact-card{padding:24px 16px}
+  /* Contact card */
+  .contact-card { padding: 36px 28px; }
+
+  /* ROI bars */
+  .roi-bar-wrap { padding: 28px 24px; }
+
+  /* Process timeline — allow scroll */
+  .process-timeline { gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .process-step { min-width: 140px; }
 }
 
-/* ── Extra small (≤380px — small Androids, iPhone SE) ── */
-@media(max-width:380px){
-  .hero-title{font-size:2.6rem!important}
-  .hero-btns{gap:10px}
-  .hero-stats{grid-template-columns:repeat(2,1fr)!important}
-  .stat-num{font-size:1.4rem}
-  .section-title{font-size:1.5rem!important}
-  .tcard{padding:24px 18px}
-  .mv-card{padding:28px 18px}
-  .contact-card{padding:20px 14px}
-  .bridal-special{padding:20px 14px}
-  .gold-card{height:200px}
-  .card-logo{font-size:1rem}
-  .card-number{font-size:0.85rem;letter-spacing:0.12em}
-  .footer-logo{font-size:1.5rem}
-  .service-card{height:280px}
+/* ── Mobile (max 767px) ── */
+@media (max-width: 767px) {
+  /* Floating WhatsApp — keep it away from bottom edge, no extra space */
+  .float-wa {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 18px;
+    font-size: 1.3rem;
+  }
+
+  /* Hero */
+  .hero-content { padding: 0 18px; }
+  .hero-sub { font-size: 1rem; }
+  .hero-btns { flex-direction: column; align-items: center; gap: 12px; }
+  .hero-btns .btn-gold,
+  .hero-btns .btn-outline-white { width: 100%; max-width: 280px; justify-content: center; }
+  .hero-scroll { display: none; }
+
+  /* Hero stats — 2x2 grid */
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stat { padding: 14px 16px; gap: 10px; }
+  .stat-num { font-size: 1.5rem; }
+  .stat-label { font-size: 0.68rem; }
+
+  /* Sections */
+  .py-section { padding: 64px 0; }
+  .py-section-sm { padding: 44px 0; }
+  .section-title { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+
+  /* Service cards */
+  .service-card { height: 360px; }
+  .sc-title { font-size: 1.5rem; }
+
+  /* Before/After slider */
+  .ba-wrapper { height: 260px; border-radius: 16px; }
+
+  /* Gallery */
+  .gallery-masonry { columns: 1; }
+
+  /* Gold card */
+  .gold-card { width: 100%; max-width: 340px; height: 210px; }
+
+  /* Why cards */
+  .why-card { padding: 28px 20px; }
+  .why-icon { width: 56px; height: 56px; }
+  .why-num { font-size: 2rem; }
+
+  /* Testi cards */
+  .testi-card { padding: 26px 22px; margin: 8px; }
+
+  /* CTA section */
+  .cta-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .cta-section .d-flex { flex-direction: column; align-items: center; }
+  .cta-section .btn-gold,
+  .cta-section .btn-gold-outline { width: 100%; max-width: 300px; justify-content: center; }
+
+  /* Timeline */
+  .timeline-year { font-size: 2rem; }
+  .timeline-content { padding: 22px 20px; }
+
+  /* Mission/Vision */
+  .mv-card { padding: 32px 24px; }
+  .mv-title { font-size: 1.6rem; }
+
+  /* Invest cards */
+  .invest-card { padding: 28px 24px; }
+  .invest-num { font-size: 1.8rem; }
+
+  /* Bridal */
+  .bridal-special { padding: 32px 24px; }
+  .bridal-title { font-size: clamp(1.7rem, 6vw, 2.5rem); }
+
+  /* Benefit cards */
+  .benefit-card { padding: 28px 20px; }
+
+  /* Contact */
+  .contact-card { padding: 28px 22px; }
+  .map-wrap { height: 220px; }
+
+  /* Page banner */
+  .page-banner { min-height: 44vh; }
+  .page-banner-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+  .page-banner-content { padding: 40px 0 52px; }
+
+  /* Footer */
+  footer { padding: 60px 0 0; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  /* Stats counters */
+  .counter-num { font-size: clamp(2.4rem, 10vw, 4rem); }
+  .stat-counter-card { padding: 32px 16px; }
+
+  /* Process timeline */
+  .process-step { min-width: 120px; padding: 24px 10px; }
+  .step-circle { width: 54px; height: 54px; font-size: 1.1rem; }
+
+  /* Price accordion */
+  .price-header { padding: 16px 20px; }
+  .price-body.open { max-height: 300px; padding: 0 20px 16px; }
+
+  /* ROI bars */
+  .roi-bar-wrap { padding: 22px 18px; }
+  .roi-bar-row { gap: 10px; }
+  .roi-bar-label { min-width: 60px; font-size: 0.76rem; }
+}
+
+/* ── Small mobile (max 400px) ── */
+@media (max-width: 400px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .nav-inner { padding: 14px 16px; }
+  .container-xl { padding: 0 14px; }
+  .service-card { height: 300px; }
+  .ba-wrapper { height: 220px; }
+  .gold-card { height: 190px; }
+  .float-wa { width: 46px; height: 46px; bottom: 16px; right: 14px; font-size: 1.2rem; }
 }

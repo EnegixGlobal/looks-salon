@@ -9,6 +9,56 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* ── Page-level responsive fixes ── */
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto !important; }
+  #cursor-dot, #cursor-ring { display: none !important; }
+}
+
+/* WhatsApp float button – mobile */
+@media (max-width: 767px) {
+  .float-wa {
+    width: 50px !important;
+    height: 50px !important;
+    bottom: 20px !important;
+    right: 18px !important;
+    font-size: 1.3rem !important;
+  }
+  /* Ensure last section doesn't get covered by WA button */
+  body { padding-bottom: 80px; }
+  footer { margin-bottom: 0 !important; }
+}
+
+/* CTA section button stack on mobile */
+@media (max-width: 767px) {
+  .cta-section .d-flex { flex-direction: column; align-items: center; }
+  .cta-section .btn-gold,
+  .cta-section .btn-gold-outline,
+  .cta-section .btn-dark { width: 100%; max-width: 300px; justify-content: center; }
+}
+</style>
+
+<style>
+/* Men's page responsive */
+@media (max-width: 991px) {
+  .srv-card .srv-img-wrap[style*="height:220px"] { height: 180px !important; }
+}
+@media (max-width: 767px) {
+  .srv-card .srv-img-wrap[style*="height:220px"] { height: 160px !important; }
+  .srv-body { padding: 18px 20px !important; }
+  .srv-title { font-size: 1.1rem !important; }
+  .srv-desc { font-size: 0.92rem !important; }
+  .srv-price { font-size: 1rem !important; }
+  /* Price accordion */
+  .price-header { padding: 14px 18px !important; }
+  .price-service-name { font-size: 0.85rem !important; }
+}
+</style>
+
 </head>
 <body data-page="men">
 <script src="navbar.js"></script>

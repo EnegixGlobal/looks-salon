@@ -9,6 +9,67 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* ── Page-level responsive fixes ── */
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto !important; }
+  #cursor-dot, #cursor-ring { display: none !important; }
+}
+
+/* WhatsApp float button – mobile */
+@media (max-width: 767px) {
+  .float-wa {
+    width: 50px !important;
+    height: 50px !important;
+    bottom: 20px !important;
+    right: 18px !important;
+    font-size: 1.3rem !important;
+  }
+  /* Ensure last section doesn't get covered by WA button */
+  body { padding-bottom: 80px; }
+  footer { margin-bottom: 0 !important; }
+}
+
+/* CTA section button stack on mobile */
+@media (max-width: 767px) {
+  .cta-section .d-flex { flex-direction: column; align-items: center; }
+  .cta-section .btn-gold,
+  .cta-section .btn-gold-outline,
+  .cta-section .btn-dark { width: 100%; max-width: 300px; justify-content: center; }
+}
+</style>
+
+<style>
+/* Loyalty page responsive */
+@media (max-width: 991px) {
+  /* Hero section */
+  section[style*="min-height:70vh"] { min-height: 60vh !important; }
+  .gold-card { width: 320px !important; height: 200px !important; }
+}
+@media (max-width: 767px) {
+  /* Hero */
+  section[style*="min-height:70vh"] { min-height: auto !important; padding: 80px 0 60px !important; }
+  section[style*="min-height:70vh"] h1 { font-size: clamp(2.2rem, 8vw, 3.5rem) !important; }
+  section[style*="min-height:70vh"] .row { flex-direction: column; }
+  section[style*="min-height:70vh"] p[style*="font-size:1.15rem"] { font-size: 1rem !important; }
+  /* Gold card */
+  .gold-card { width: 100% !important; max-width: 320px !important; height: 195px !important; }
+  .gold-card-face { padding: 22px !important; }
+  .card-number { font-size: 0.88rem !important; letter-spacing: 0.12em !important; }
+  /* Point rows */
+  .point-row { padding: 14px 16px !important; gap: 12px !important; }
+  .point-label { min-width: 110px !important; font-size: 0.78rem !important; }
+  .point-value { min-width: 55px !important; font-size: 0.88rem !important; }
+  /* Membership tiers */
+  div[style*="padding:36px;text-align:center;border"] { padding: 26px 20px !important; }
+  /* Redemption box */
+  div[style*="background:var(--white);border-radius:16px;padding:24px"] { padding: 18px !important; }
+}
+</style>
+
 </head>
 <body data-page="loyalty">
 <script src="navbar.js"></script>

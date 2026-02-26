@@ -13,13 +13,14 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-
-/* ════════════════════════════════
-   HERO
-════════════════════════════════ */
+/* ── HERO ── */
 .hero {
   min-height:100vh; position:relative; overflow:hidden;
   display:flex; align-items:center; justify-content:center; background:var(--black);
+  padding-bottom:160px; /* space for stats bar */
+}
+@media(max-width:767px){
+  .hero{ padding-bottom:220px; } /* 2-row stats taller on mobile */
 }
 .hero-bg {
   position:absolute; inset:0;
@@ -30,24 +31,6 @@
   position:absolute; inset:0;
   background:linear-gradient(165deg, rgba(13,13,13,0.82) 0%, rgba(13,13,13,0.50) 55%, rgba(200,151,63,0.12) 100%);
 }
-/* Grain texture */
-.hero-grain {
-  position:absolute; inset:0; z-index:1; opacity:0.04; pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grainAnim 0.4s steps(1) infinite;
-}
-@keyframes grainAnim{0%{transform:translate(0,0)}25%{transform:translate(-2%,-1%)}50%{transform:translate(1%,2%)}75%{transform:translate(-1%,1%)}100%{transform:translate(2%,-2%)}}
-
-/* Gold orbs */
-.hero-orb {
-  position:absolute; border-radius:50%; pointer-events:none;
-  background:radial-gradient(circle, rgba(200,151,63,0.15) 0%, transparent 70%);
-  animation:orbFloat var(--od) ease-in-out infinite alternate;
-}
-.hero-orb-1{width:520px;height:520px;top:-12%;right:-6%;--od:9s;z-index:1;}
-.hero-orb-2{width:320px;height:320px;bottom:18%;left:-4%;--od:12s;animation-delay:-5s;z-index:1;}
-@keyframes orbFloat{from{transform:translateY(0) scale(1);}to{transform:translateY(-28px) scale(1.06);}}
-
 .hero-content { position:relative; z-index:2; text-align:center; max-width:900px; padding:0 24px; }
 .hero-eyebrow {
   font-size:0.77rem; font-weight:500; letter-spacing:0.3em; text-transform:uppercase;
@@ -60,15 +43,7 @@
   line-height:0.95; color:var(--white); letter-spacing:-0.03em; margin-bottom:14px;
   opacity:0; transform:translateY(30px); animation:fadeUp 0.9s 0.55s var(--ease) forwards;
 }
-/* Shimmer gold on "Redefined." */
-.hero-title em {
-  font-style:italic; font-weight:400;
-  background:linear-gradient(90deg, var(--gold) 0%, var(--gold-shine) 35%, var(--gold) 55%, var(--gold-light) 100%);
-  background-size:220% auto;
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  animation:shimmerText 3.5s linear infinite 1.5s;
-}
-@keyframes shimmerText{to{background-position:220% center;}}
+.hero-title em { font-style:italic; color:var(--gold-light); font-weight:400; }
 .hero-sub {
   font-family:var(--font-elegant); font-size:clamp(1.1rem,2.5vw,1.5rem);
   color:rgba(255,255,255,0.72); font-weight:300; letter-spacing:0.04em; line-height:1.75;
@@ -79,70 +54,39 @@
   opacity:0; transform:translateY(20px); animation:fadeUp 0.9s 1.05s var(--ease) forwards;
 }
 .hero-scroll {
-  position:absolute; bottom:170px; left:50%; transform:translateX(-50%);
-  display:flex; flex-direction:column; align-items:center; gap:8px; z-index:2;
+  position:absolute; bottom:160px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
   opacity:0; animation:fadeUp 0.9s 1.4s var(--ease) forwards;
 }
+@media(max-width:767px){ .hero-scroll{ display:none; } }
 .hero-scroll span{font-size:0.68rem;letter-spacing:0.22em;color:rgba(255,255,255,0.45);text-transform:uppercase;}
 .scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,0.5),transparent);animation:scrollPulse 2s ease-in-out infinite;}
-@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:.5}50%{transform:scaleY(.55) translateY(14px);opacity:1}}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:.5}50%{transform:scaleY(.5) translateY(18px);opacity:1}}
 .hero-stats {
-  position:absolute; bottom:0; left:0; right:0; z-index:2;
+  position:absolute; bottom:0; left:0; right:0;
   background:rgba(255,255,255,0.96); backdrop-filter:blur(20px);
   display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(200,151,63,0.12);
+}
+@media(max-width:767px){
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  .hero-stat:nth-child(2){border-right:none;}
+  .hero-stat:nth-child(1),.hero-stat:nth-child(2){border-bottom:1px solid rgba(200,151,63,0.1);}
 }
 .hero-stat { padding:22px 28px; border-right:1px solid rgba(200,151,63,0.1); display:flex; align-items:center; gap:14px; transition:background .2s; }
 .hero-stat:last-child{border-right:none}
 .hero-stat:hover{background:var(--cream)}
 .stat-num{font-family:var(--font-serif);font-size:2rem;font-weight:700;color:var(--gold);line-height:1;}
 .stat-label{font-size:0.76rem;color:var(--gray);font-weight:500;line-height:1.4;text-transform:uppercase;letter-spacing:0.06em;}
-
-/* ── Hero responsive fixes ── */
-@media(max-width:767px){
-  .hero-btns{flex-direction:column;align-items:center;gap:12px;}
-  .hero-btns .btn-gold, .hero-btns .btn-outline-white{
-    width:100%;max-width:300px;justify-content:center;
-  }
-  .hero-stats{grid-template-columns:repeat(2,1fr)!important;}
-  .hero-stat{padding:16px 12px;border-right:none;border-bottom:1px solid rgba(200,151,63,0.1);}
-  .hero-stat:nth-child(odd){border-right:1px solid rgba(200,151,63,0.1)!important;}
-  .hero-stat:nth-child(3),.hero-stat:nth-child(4){border-bottom:none;}
-  .hero-scroll{display:none;}
-}
-@media(max-width:480px){
-  .hero-btns .btn-gold, .hero-btns .btn-outline-white{max-width:100%;}
-  .stat-num{font-size:1.5rem;}
-}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
-/* ════════════════════════════════
-   MARQUEE STRIP
-════════════════════════════════ */
-.marquee-strip {
-  background:var(--gold); overflow:hidden;
-  padding:14px 0; white-space:nowrap; position:relative;
-}
-.marquee-track {
-  display:inline-block;
-  animation:marqueeScroll 18s linear infinite;
-}
-.marquee-strip:hover .marquee-track { animation-play-state:paused; }
-.marquee-item {
-  display:inline-flex; align-items:center; gap:12px;
-  font-size:0.72rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase;
-  color:rgba(255,255,255,0.9); padding:0 36px;
-}
-.marquee-item i { font-size:0.85rem; opacity:0.75; }
-@keyframes marqueeScroll{ to{ transform:translateX(-50%); } }
-
-/* ════════════════════════════════
-   SERVICE CARDS
-════════════════════════════════ */
+/* ── SERVICE CARDS ── */
 .service-card {
   position:relative; height:520px; border-radius:24px; overflow:hidden;
   cursor:pointer; transition:transform 0.45s var(--ease),box-shadow 0.45s;
   box-shadow:var(--shadow-sm); display:block; text-decoration:none;
 }
+@media(max-width:991px){.service-card{height:420px;}}
+@media(max-width:767px){.service-card{height:360px;}}
 .service-card:hover{transform:translateY(-10px) scale(1.012);box-shadow:var(--shadow-lg);}
 .service-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease);}
 .service-card:hover img{transform:scale(1.07);}
@@ -158,255 +102,30 @@
 .sc-link{display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);transition:gap 0.3s var(--ease-spring);}
 .service-card:hover .sc-link{gap:14px;}
 
-/* Floating particles in services section */
-.particles-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-.particle{
-  position:absolute; border-radius:50%; background:var(--gold); opacity:0;
-  animation:particleDrift var(--pdur) var(--pdel) ease-in-out infinite;
-}
-@keyframes particleDrift{
-  0%{opacity:0;transform:translateY(0) scale(0);}
-  20%{opacity:0.14;}80%{opacity:0.06;}
-  100%{opacity:0;transform:translateY(-110px) scale(1.2);}
-}
-
-/* ════════════════════════════════
-   BRAND CAROUSEL
-════════════════════════════════ */
+/* ── BRANDS ── */
 .brand-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-pale),transparent);}
 .brand-item{display:flex!important;align-items:center;justify-content:center;padding:16px 40px;height:80px;}
 .brand-item img{max-height:40px;object-fit:contain;filter:grayscale(1) opacity(.4);transition:filter 0.4s,transform 0.3s var(--ease-spring);}
 .brand-item:hover img{filter:grayscale(0) opacity(1);transform:scale(1.08);}
 
-/* ════════════════════════════════
-   NUMBERS DARK BAND
-════════════════════════════════ */
-.numbers-band {
-  background:var(--black); position:relative; overflow:hidden;
-}
-.numbers-band::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 30% 50%, rgba(200,151,63,0.08) 0%, transparent 55%);
-}
-.num-cell {
-  padding:52px 32px; border-right:1px solid rgba(255,255,255,0.05);
-  text-align:center; transition:background 0.3s; position:relative;
-}
-.num-cell:last-child{border-right:none;}
-.num-cell:hover{background:rgba(200,151,63,0.05);}
-.num-big {
-  font-family:var(--font-serif); font-size:clamp(2.8rem,4.5vw,4.5rem);
-  font-weight:900; line-height:1; margin-bottom:8px;
-  background:linear-gradient(180deg, var(--gold-shine) 0%, var(--gold) 100%);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-}
-.num-label{font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.14em;}
-
-/* ════════════════════════════════
-   WHY CHOOSE US — 3D Tilt Cards
-════════════════════════════════ */
-.why-outer{position:relative;overflow:hidden;}
-.why-outer-bg{
-  position:absolute; inset:0;
-  background:radial-gradient(ellipse at 15% 60%, rgba(200,151,63,0.06) 0%, transparent 55%),
-             radial-gradient(ellipse at 85% 40%, rgba(200,151,63,0.04) 0%, transparent 50%);
-}
-.why-split { display:grid; grid-template-columns:1fr 2fr; gap:64px; align-items:start; }
-@media(max-width:991px){ .why-split{grid-template-columns:1fr;} }
-.why-sticky { position:sticky; top:120px; }
-
-.why-card-3d {
-  background:var(--white); border-radius:22px; padding:38px 32px;
-  border:1px solid rgba(200,151,63,0.08); height:100%;
-  position:relative; overflow:hidden;
-  box-shadow:var(--shadow-sm);
-  transition:box-shadow 0.35s;
-}
-.why-card-3d::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:3px;
-  background:linear-gradient(90deg, var(--gold), var(--gold-light));
-  transform:scaleX(0); transform-origin:left; transition:transform 0.5s var(--ease);
-}
-.why-card-3d:hover::before { transform:scaleX(1); }
-.why-card-3d:hover { box-shadow:var(--shadow-gold); }
-.why-card-glow {
-  position:absolute; inset:0; border-radius:22px; opacity:0;
-  background:linear-gradient(135deg, rgba(200,151,63,0.06) 0%, transparent 60%);
-  transition:opacity 0.4s;
-}
-.why-card-3d:hover .why-card-glow { opacity:1; }
-.why-icon-box {
-  width:60px; height:60px; border-radius:16px;
-  background:linear-gradient(135deg, var(--gold-pale), var(--cream));
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.5rem; color:var(--gold); margin-bottom:20px;
-  box-shadow:0 4px 14px rgba(200,151,63,0.14);
-  transition:transform 0.4s var(--ease-spring), background 0.3s, color 0.3s;
-}
-.why-card-3d:hover .why-icon-box {
-  transform:scale(1.1) rotate(-7deg);
-  background:linear-gradient(135deg, var(--gold), var(--gold-light));
-  color:var(--white);
-}
-.why-num { font-family:var(--font-serif); font-size:2.5rem; font-weight:900; color:var(--black); line-height:1; margin-bottom:4px; }
-.why-ttl { font-size:0.88rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--dark); margin-bottom:10px; }
-.why-dsc { font-family:var(--font-elegant); font-size:1rem; color:var(--gray); line-height:1.75; }
-
-/* ════════════════════════════════
-   BEFORE / AFTER
-════════════════════════════════ */
+/* ── BEFORE/AFTER ── */
 .ba-wrapper{height:480px;border-radius:24px;overflow:hidden;position:relative;cursor:ew-resize;user-select:none;box-shadow:var(--shadow-md);}
+@media(max-width:767px){.ba-wrapper{height:260px;border-radius:16px;}}
+@media(max-width:400px){.ba-wrapper{height:210px;}}
 .ba-before,.ba-after{position:absolute;inset:0;background-size:cover;background-position:center;}
 .ba-divider{position:absolute;top:0;left:50%;width:3px;height:100%;background:var(--white);transform:translateX(-50%);z-index:3;}
 .ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:var(--white);z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25);font-size:1.1rem;color:var(--gold);}
 .ba-label{position:absolute;bottom:20px;font-size:0.73rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;background:rgba(0,0,0,.55);color:var(--white);padding:6px 14px;border-radius:50px;backdrop-filter:blur(8px);}
 .ba-label-before{left:20px}.ba-label-after{right:20px}
-/* Decorative ring */
-.ba-ring {
-  position:absolute; top:50%; right:-80px; width:240px; height:240px;
-  border-radius:50%; border:1px solid rgba(200,151,63,0.1);
-  animation:ringRotate 28s linear infinite; pointer-events:none;
-}
-.ba-ring::before{content:'';position:absolute;inset:20px;border-radius:50%;border:1px dashed rgba(200,151,63,0.07);}
-@keyframes ringRotate{to{transform:rotate(360deg);}}
-
-/* ════════════════════════════════
-   TESTIMONIALS — Redesigned
-════════════════════════════════ */
-.testi-dark { background:var(--black); position:relative; overflow:hidden; }
-.testi-dark::before {
-  content:''; position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(ellipse at 50% 0%, rgba(200,151,63,0.1) 0%, transparent 50%);
-}
-
-.testi-pill {
-  display:inline-flex; align-items:center; gap:10px;
-  background:rgba(200,151,63,0.1); border:1px solid rgba(200,151,63,0.18);
-  border-radius:50px; padding:9px 20px;
-  font-size:0.77rem; font-weight:600; color:var(--gold-light); letter-spacing:0.08em;
-  margin-bottom:32px;
-  animation:pillGlow 3s ease-in-out infinite;
-}
-@keyframes pillGlow{
-  0%,100%{box-shadow:0 0 0 0 rgba(200,151,63,0.18);}
-  50%{box-shadow:0 0 0 8px rgba(200,151,63,0);}
-}
-
-/* 2-column grid */
-.testi-grid {
-  display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
-}
-@media(max-width:767px){ .testi-grid{grid-template-columns:1fr;} }
-
-.tcard {
-  background:rgba(255,255,255,0.035); border:1px solid rgba(200,151,63,0.1);
-  border-radius:22px; padding:38px;
-  position:relative; overflow:hidden;
-  transition:transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
-}
-.tcard:hover {
-  transform:translateY(-6px);
-  border-color:rgba(200,151,63,0.35);
-  box-shadow:0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(200,151,63,0.12);
-}
-/* Big quote mark */
-.tcard::before {
-  content:'\201C'; font-family:var(--font-serif);
-  position:absolute; top:-18px; left:26px;
-  font-size:9rem; line-height:1;
-  color:rgba(200,151,63,0.07); pointer-events:none;
-  transition:color 0.4s;
-}
-.tcard:hover::before { color:rgba(200,151,63,0.13); }
-/* Top accent line */
-.tcard::after {
-  content:''; position:absolute; top:0; left:0; right:0; height:2px;
-  background:linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
-  opacity:0; transition:opacity 0.4s;
-}
-.tcard:hover::after { opacity:1; }
-
-.tcard-stars { display:flex; gap:4px; margin-bottom:18px; }
-.tcard-stars i { font-size:0.82rem; color:var(--gold); }
-.tcard-text {
-  font-family:var(--font-elegant); font-size:1.1rem;
-  color:rgba(255,255,255,0.76); line-height:1.85; font-weight:300;
-  margin-bottom:26px; position:relative; z-index:1;
-}
-/* Author — Circular profile images */
-.tcard-author { display:flex; align-items:center; gap:14px; }
-.tcard-img {
-  width:50px; height:50px; border-radius:50%;
-  object-fit:cover; object-position:top center;
-  border:2px solid rgba(200,151,63,0.5); flex-shrink:0;
-}
-.tcard-name { font-weight:600; font-size:0.9rem; color:var(--white); margin-bottom:2px; }
-.tcard-city { font-size:0.76rem; color:var(--gold); font-weight:500; letter-spacing:0.06em; text-transform:uppercase; }
-
-/* Featured card — full width, slightly different bg */
-.tcard-featured {
-  grid-column:1 / -1;
-  background:linear-gradient(135deg, rgba(200,151,63,0.09) 0%, rgba(200,151,63,0.03) 100%);
-  border-color:rgba(200,151,63,0.22);
-  display:flex; gap:36px; align-items:center; flex-wrap:wrap;
-}
-.tcard-featured .tcard-text { font-size:1.22rem; flex:1; min-width:220px; }
-.tcard-feat-meta { display:flex; flex-direction:column; align-items:center; gap:14px; }
-.tcard-rating {
-  background:var(--gold); color:var(--white);
-  font-family:var(--font-serif); font-size:1.5rem; font-weight:900;
-  width:64px; height:64px; border-radius:16px;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 8px 24px rgba(200,151,63,0.4);
-}
-.tcard-featured .tcard-img { width:68px; height:68px; border-radius:50%; }
-
-/* ════════════════════════════════
-   CTA ANIMATED LINES
-════════════════════════════════ */
-.cta-lines { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-.cta-line {
-  position:absolute; left:0; right:0; height:1px;
-  background:rgba(200,151,63,0.06);
-  animation:lineFade var(--ld) linear infinite;
-}
-.cta-line:nth-child(1){top:22%;--ld:6s;}
-.cta-line:nth-child(2){top:58%;--ld:9s;animation-delay:2s;}
-.cta-line:nth-child(3){top:82%;--ld:7s;animation-delay:1s;}
-@keyframes lineFade{
-  0%{transform:scaleX(0);transform-origin:left;}
-  49%{transform:scaleX(1);transform-origin:left;}
-  50%{transform:scaleX(1);transform-origin:right;}
-  100%{transform:scaleX(0);transform-origin:right;}
-}
-
-/* ════════════════════════════════
-   CUSTOM REVEAL SYSTEM
-════════════════════════════════ */
-[data-reveal]{opacity:0;}
-[data-reveal="up"]{transform:translateY(48px);}
-[data-reveal="left"]{transform:translateX(-48px);}
-[data-reveal="right"]{transform:translateX(48px);}
-[data-reveal="scale"]{transform:scale(0.9);}
-[data-reveal].is-visible{
-  opacity:1 !important; transform:none !important;
-  transition:opacity 0.72s var(--ease), transform 0.72s var(--ease);
-}
-
 </style>
 </head>
 <body data-page="home">
 <script src="navbar.js"></script>
 
-<!-- ════════════════════════════════
-     HERO
-════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-grain"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Est. 1993 &middot; Pan India &middot; 200+ Outlets</div>
     <h1 class="hero-title">Luxury<br><em>Redefined.</em></h1>
@@ -425,49 +144,21 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════
-     MARQUEE
-════════════════════════════════ -->
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item"><i class="fas fa-scissors"></i>Haircut &amp; Styling</span>
-    <span class="marquee-item"><i class="fas fa-spa"></i>Luxury Spa</span>
-    <span class="marquee-item"><i class="fas fa-crown"></i>Bridal Packages</span>
-    <span class="marquee-item"><i class="fas fa-paint-brush"></i>Hair Color</span>
-    <span class="marquee-item"><i class="fas fa-star"></i>Keratin Treatment</span>
-    <span class="marquee-item"><i class="fas fa-user-tie"></i>Beard Grooming</span>
-    <span class="marquee-item"><i class="fas fa-gem"></i>Nail Art</span>
-    <span class="marquee-item"><i class="fas fa-leaf"></i>Skincare</span>
-    <span class="marquee-item"><i class="fas fa-scissors"></i>Haircut &amp; Styling</span>
-    <span class="marquee-item"><i class="fas fa-spa"></i>Luxury Spa</span>
-    <span class="marquee-item"><i class="fas fa-crown"></i>Bridal Packages</span>
-    <span class="marquee-item"><i class="fas fa-paint-brush"></i>Hair Color</span>
-    <span class="marquee-item"><i class="fas fa-star"></i>Keratin Treatment</span>
-    <span class="marquee-item"><i class="fas fa-user-tie"></i>Beard Grooming</span>
-    <span class="marquee-item"><i class="fas fa-gem"></i>Nail Art</span>
-    <span class="marquee-item"><i class="fas fa-leaf"></i>Skincare</span>
-  </div>
-</div>
-
-<!-- ════════════════════════════════
-     SERVICES PREVIEW
-════════════════════════════════ -->
-<section class="py-section" style="background:var(--off-white);position:relative;">
-  <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=60') center/cover;opacity:0.03;pointer-events:none;"></div>
-  <div class="particles-wrap" id="srv-particles"></div>
-  <div class="container-xl" style="position:relative;z-index:1;">
+<!-- SERVICES PREVIEW -->
+<section class="py-section" style="background:var(--off-white);">
+  <div class="container-xl">
     <div class="row mb-5">
-      <div class="col-lg-6" data-reveal="up">
+      <div class="col-lg-6" data-aos="fade-up">
         <div class="section-label">What We Offer</div>
         <h2 class="section-title">Premium <em>Services</em><br>For You</h2>
         <div class="gold-divider mt-3"></div>
       </div>
-      <div class="col-lg-6 d-flex align-items-end" data-reveal="up" style="--rd:0.15s">
+      <div class="col-lg-6 d-flex align-items-end" data-aos="fade-up" data-aos-delay="100">
         <p class="section-desc">From precision haircuts to luxurious bridal packages — a complete beauty experience crafted for discerning individuals.</p>
       </div>
     </div>
     <div class="row g-4">
-      <div class="col-lg-4" data-reveal="up" style="--rd:0s">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
         <a href="men.html" class="service-card">
           <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Men's Grooming">
           <div class="service-card-overlay"></div>
@@ -480,7 +171,7 @@
           </div>
         </a>
       </div>
-      <div class="col-lg-4" data-reveal="up" style="--rd:0.15s">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
         <a href="women.html" class="service-card">
           <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Women's Beauty">
           <div class="service-card-overlay"></div>
@@ -493,7 +184,7 @@
           </div>
         </a>
       </div>
-      <div class="col-lg-4" data-reveal="up" style="--rd:0.3s">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
         <a href="loyalty.html" class="service-card">
           <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&q=80" alt="Loyalty">
           <div class="service-card-overlay"></div>
@@ -510,16 +201,14 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════
-     BRAND CAROUSEL
-════════════════════════════════ -->
+<!-- BRAND CAROUSEL -->
 <section class="py-section-sm" style="background:var(--white);">
   <div class="container-xl">
-    <div class="text-center mb-4" data-reveal="up">
+    <div class="text-center mb-4" data-aos="fade-up">
       <div class="section-label" style="justify-content:center;">Our Partners</div>
       <p style="font-family:var(--font-elegant);font-size:1.1rem;color:var(--gray);margin-top:6px;">Trusted by world's finest beauty brands</p>
     </div>
-    <div class="brand-divider mb-4"></div>
+    <div class="brand-divider mb-4" data-aos="fade"></div>
     <div class="owl-carousel" id="brand-carousel">
       <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/LOreal_logo.svg/200px-LOreal_logo.svg.png" alt="L'Oreal"></div>
       <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Wella_logo.svg/200px-Wella_logo.svg.png" alt="Wella"></div>
@@ -528,130 +217,43 @@
       <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kerastase_logo.png/200px-Kerastase_logo.png" alt="Kerastase"></div>
       <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MATRIX_BRAND_LOGO.png/200px-MATRIX_BRAND_LOGO.png" alt="Matrix"></div>
     </div>
-    <div class="brand-divider mt-4"></div>
+    <div class="brand-divider mt-4" data-aos="fade"></div>
   </div>
 </section>
 
-<!-- ════════════════════════════════
-     NUMBERS DARK BAND (NEW)
-════════════════════════════════ -->
-<section class="numbers-band">
-  <div class="container-xl" style="position:relative;z-index:1;">
-    <div class="row g-0" id="num-row">
-      <div class="col-md-3 col-6">
-        <div class="num-cell" data-reveal="up" style="--rd:0s">
-          <div class="num-big"><span class="nc" data-t="200">0</span>+</div>
-          <div class="num-label">Outlets Nationwide</div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="num-cell" data-reveal="up" style="--rd:0.1s">
-          <div class="num-big"><span class="nc" data-t="55">0</span>+</div>
-          <div class="num-label">Cities Covered</div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="num-cell" data-reveal="up" style="--rd:0.2s">
-          <div class="num-big"><span class="nc" data-t="30">0</span>+</div>
-          <div class="num-label">Years of Excellence</div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="num-cell" data-reveal="up" style="--rd:0.3s">
-          <div class="num-big"><span class="nc" data-t="10">0</span>M+</div>
-          <div class="num-label">Happy Clients</div>
-        </div>
-      </div>
+<!-- WHY CHOOSE US -->
+<section class="py-section" style="background:var(--cream);">
+  <div class="container-xl">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label" style="justify-content:center;">Why Looks</div>
+      <h2 class="section-title">Why Choose <em>Us</em></h2>
+      <div class="gold-divider mx-auto mt-3"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0"><div class="why-card"><div class="why-icon"><i class="fas fa-certificate"></i></div><div class="why-num">500+</div><div class="why-title">Certified Stylists</div><div class="why-desc">Every stylist is trained at Looks Academy with international certifications.</div></div></div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="80"><div class="why-card"><div class="why-icon"><i class="fas fa-flask"></i></div><div class="why-num">100%</div><div class="why-title">Premium Products</div><div class="why-desc">We use only L'Oréal, Kerastase, and globally certified professional products.</div></div></div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160"><div class="why-card"><div class="why-icon"><i class="fas fa-shield-alt"></i></div><div class="why-num">100%</div><div class="why-title">Hygiene Assured</div><div class="why-desc">ISO-certified hygiene protocols. Sterilized tools and sanitized spaces always.</div></div></div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="240"><div class="why-card"><div class="why-icon"><i class="fas fa-map-marker-alt"></i></div><div class="why-num">200+</div><div class="why-title">Locations</div><div class="why-desc">Present across 55+ cities with 200+ premium outlets across India.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════
-     WHY CHOOSE US
-════════════════════════════════ -->
-<section class="py-section why-outer" style="background:var(--cream);position:relative;">
-  <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1400&q=60') center/cover;opacity:0.04;pointer-events:none;"></div>
-  <div class="why-outer-bg"></div>
-  <div class="container-xl" style="position:relative;z-index:1;">
-    <div class="why-split">
-      <div class="why-sticky" data-reveal="left">
-        <div class="section-label">Why Looks</div>
-        <h2 class="section-title">Why Choose<br><em>Us?</em></h2>
-        <div class="gold-divider mt-3 mb-4"></div>
-        <p style="font-family:var(--font-elegant);font-size:1.08rem;color:var(--gray);line-height:1.8;margin-bottom:28px;">30 years of trust, innovation, and uncompromising quality — every single visit, guaranteed.</p>
-        <a href="about.html" class="btn-gold">Our Story <i class="fas fa-arrow-right ms-2"></i></a>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6" data-reveal="up" style="--rd:0s">
-          <div class="why-card-3d">
-            <div class="why-card-glow"></div>
-            <div class="why-icon-box"><i class="fas fa-certificate"></i></div>
-            <div class="why-num">500+</div>
-            <div class="why-ttl">Certified Stylists</div>
-            <div class="why-dsc">Every stylist trained at Looks Academy with international certifications and continuous upskilling programs.</div>
-          </div>
-        </div>
-        <div class="col-md-6" data-reveal="up" style="--rd:0.1s">
-          <div class="why-card-3d">
-            <div class="why-card-glow"></div>
-            <div class="why-icon-box"><i class="fas fa-flask"></i></div>
-            <div class="why-num">100%</div>
-            <div class="why-ttl">Premium Products</div>
-            <div class="why-dsc">Only L'Oréal, Kerastase, Olaplex and globally certified professional products used at every outlet.</div>
-          </div>
-        </div>
-        <div class="col-md-6" data-reveal="up" style="--rd:0.2s">
-          <div class="why-card-3d">
-            <div class="why-card-glow"></div>
-            <div class="why-icon-box"><i class="fas fa-shield-alt"></i></div>
-            <div class="why-num">ISO</div>
-            <div class="why-ttl">Hygiene Assured</div>
-            <div class="why-dsc">ISO-certified hygiene protocols. Sterilized tools, fresh linens, and sanitized spaces — every single time.</div>
-          </div>
-        </div>
-        <div class="col-md-6" data-reveal="up" style="--rd:0.3s">
-          <div class="why-card-3d">
-            <div class="why-card-glow"></div>
-            <div class="why-icon-box"><i class="fas fa-map-marker-alt"></i></div>
-            <div class="why-num">200+</div>
-            <div class="why-ttl">Locations</div>
-            <div class="why-dsc">Spread across 55+ cities with 200+ premium outlets — there's always a Looks Salon near you.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════
-     BEFORE / AFTER
-════════════════════════════════ -->
-<section class="py-section" style="background:var(--off-white);overflow:hidden;">
-  <div class="ba-ring"></div>
+<!-- BEFORE / AFTER -->
+<section class="py-section" style="background:var(--off-white);">
   <div class="container-xl">
     <div class="row align-items-center g-5">
-      <div class="col-lg-5" data-reveal="left">
+      <div class="col-lg-5" data-aos="fade-right">
         <div class="section-label">Transformations</div>
         <h2 class="section-title">See the <em>Difference</em></h2>
         <div class="gold-divider mt-3 mb-4"></div>
-        <p class="section-desc">Drag the slider to reveal the magic of a Looks Salon transformation. Real results, real clients.</p>
-        <div style="display:flex;gap:18px;margin-top:32px;flex-wrap:wrap;">
-          <div style="text-align:center;padding:18px 22px;background:var(--white);border-radius:16px;box-shadow:var(--shadow-xs);border:1px solid rgba(200,151,63,0.08);">
-            <div style="font-family:var(--font-serif);font-size:1.8rem;font-weight:900;color:var(--gold);">4.9★</div>
-            <div style="font-size:0.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;">Avg Rating</div>
-          </div>
-          <div style="text-align:center;padding:18px 22px;background:var(--white);border-radius:16px;box-shadow:var(--shadow-xs);border:1px solid rgba(200,151,63,0.08);">
-            <div style="font-family:var(--font-serif);font-size:1.8rem;font-weight:900;color:var(--gold);">10M+</div>
-            <div style="font-size:0.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;">Transformations</div>
-          </div>
-        </div>
+        <p class="section-desc">Drag the slider to reveal the magic of a Looks Salon transformation.</p>
       </div>
-      <div class="col-lg-7" data-reveal="right">
+      <div class="col-lg-7" data-aos="fade-left">
         <div class="ba-wrapper" id="ba-wrapper">
           <div class="ba-before" id="ba-before" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80');"></div>
-          <div class="ba-after" id="ba-after" style="background-image:url('https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=800&q=80');clip-path:inset(0 50% 0 0);"></div>
+          <div class="ba-after"  id="ba-after"  style="background-image:url('https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=800&q=80');clip-path:inset(0 50% 0 0);"></div>
           <div class="ba-divider" id="ba-divider"></div>
-          <div class="ba-handle" id="ba-handle"><i class="fas fa-arrows-alt-h"></i></div>
+          <div class="ba-handle"  id="ba-handle"><i class="fas fa-arrows-alt-h"></i></div>
           <div class="ba-label ba-label-before">Before</div>
           <div class="ba-label ba-label-after">After</div>
         </div>
@@ -660,92 +262,26 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════
-     TESTIMONIALS
-════════════════════════════════ -->
-<section class="py-section testi-dark">
-  <div class="container-xl" style="position:relative;z-index:1;">
-    <div class="text-center mb-5" data-reveal="up">
-      <div class="section-label" style="justify-content:center;color:rgba(255,255,255,0.3);">Reviews</div>
-      <h2 class="section-title" style="color:var(--white);">What Clients <em>Say</em></h2>
-      <div class="gold-divider mx-auto mt-3 mb-4"></div>
-      <div class="testi-pill">
-        <i class="fas fa-star"></i>
-        10,000+ Five Star Reviews Across India
-      </div>
+<!-- TESTIMONIALS -->
+<section class="py-section" style="background:var(--white);">
+  <div class="container-xl">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-label" style="justify-content:center;">Reviews</div>
+      <h2 class="section-title">What Clients <em>Say</em></h2>
+      <div class="gold-divider mx-auto mt-3"></div>
     </div>
-
-    <div class="testi-grid">
-
-      <!-- Featured full-width -->
-      <div class="tcard tcard-featured" data-reveal="scale" style="--rd:0s">
-        <div>
-          <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <div class="tcard-text">"Looks Salon has completely transformed my hair and my confidence. The stylist understood exactly what I wanted — a truly world-class experience every single time I visit."</div>
-          <div class="tcard-author" style="margin-top:4px;">
-            <img class="tcard-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" alt="Priya Sharma">
-            <div>
-              <div class="tcard-name">Priya Sharma</div>
-              <div class="tcard-city">Mumbai</div>
-            </div>
-          </div>
-        </div>
-        <div class="tcard-feat-meta">
-          <div class="tcard-rating">4.9</div>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="tcard" data-reveal="up" style="--rd:0.1s">
-        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <div class="tcard-text">"The beard grooming experience was phenomenal. Professional, hygienic, and results that exceeded every expectation."</div>
-        <div class="tcard-author">
-          <img class="tcard-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Rahul Verma">
-          <div>
-            <div class="tcard-name">Rahul Verma</div>
-            <div class="tcard-city">Delhi</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="tcard" data-reveal="up" style="--rd:0.2s">
-        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <div class="tcard-text">"My bridal package was everything I dreamed of. The team made me look like a queen on my wedding day — absolutely flawless!"</div>
-        <div class="tcard-author">
-          <img class="tcard-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80" alt="Anita Kapoor">
-          <div>
-            <div class="tcard-name">Anita Kapoor</div>
-            <div class="tcard-city">Bangalore</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="tcard" data-reveal="up" style="--rd:0.3s">
-        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <div class="tcard-text">"The loyalty programme is brilliant. Been visiting for 3 years and the rewards keep getting better. Truly the best salon in India."</div>
-        <div class="tcard-author">
-          <img class="tcard-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80" alt="Karan Mehta">
-          <div>
-            <div class="tcard-name">Karan Mehta</div>
-            <div class="tcard-city">Pune</div>
-          </div>
-        </div>
-      </div>
-
+    <div class="owl-carousel" id="testi-carousel">
+      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"Looks Salon has completely transformed my hair! The stylist understood exactly what I wanted. Absolutely world-class service."</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt=""><div><div class="testi-name">Priya Sharma</div><div class="testi-city">Mumbai</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"The beard grooming experience was phenomenal. Professional, hygienic, and the results exceeded my expectations."</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt=""><div><div class="testi-name">Rahul Verma</div><div class="testi-city">Delhi</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"My bridal package was everything I dreamed of. The team made me look like a queen on my wedding day!"</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt=""><div><div class="testi-name">Anita Kapoor</div><div class="testi-city">Bangalore</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testi-text">"The loyalty programme is amazing! I've been visiting for 3 years and the rewards keep getting better and better."</div><div class="testi-author"><img class="testi-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt=""><div><div class="testi-name">Karan Mehta</div><div class="testi-city">Pune</div></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════
-     CTA
-════════════════════════════════ -->
-<section class="cta-section py-section" style="position:relative;">
-  <div class="cta-lines" aria-hidden="true">
-    <div class="cta-line"></div><div class="cta-line"></div><div class="cta-line"></div>
-  </div>
-  <div class="container-xl text-center" style="position:relative;z-index:1;" data-reveal="up">
+<!-- CTA -->
+<section class="cta-section py-section">
+  <div class="container-xl text-center" style="position:relative;z-index:1;" data-aos="fade-up">
     <div class="section-label" style="justify-content:center;color:rgba(255,255,255,0.4);">Get Started Today</div>
     <h2 class="cta-title mt-2">Ready for Your<br><em>Transformation?</em></h2>
     <p style="font-family:var(--font-elegant);font-size:1.15rem;color:rgba(255,255,255,0.5);margin:18px auto 38px;max-width:460px;line-height:1.75;">Book your appointment today and experience the luxury of Looks Salon firsthand.</p>
@@ -761,60 +297,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="script.js"></script>
-
-<script>
-/* ─── Reveal on scroll ─── */
-const revObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target;
-    const delay = parseFloat(el.style.getPropertyValue('--rd') || '0') * 1000;
-    setTimeout(() => el.classList.add('is-visible'), delay);
-    revObs.unobserve(el);
-  });
-}, { threshold:0.1 });
-document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
-
-/* ─── Number count-up ─── */
-const numObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.querySelectorAll('.nc').forEach(el => {
-      const t = parseInt(el.dataset.t);
-      let c = 0; const s = Math.max(1, Math.ceil(t / 60));
-      const timer = setInterval(() => {
-        c = Math.min(c + s, t); el.textContent = c;
-        if (c >= t) clearInterval(timer);
-      }, 22);
-    });
-    numObs.unobserve(e.target);
-  });
-}, { threshold:0.3 });
-const nr = document.getElementById('num-row');
-if (nr) numObs.observe(nr);
-
-/* ─── Floating particles ─── */
-const pw = document.getElementById('srv-particles');
-if (pw) {
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const sz = Math.random() * 5 + 3;
-    p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*25}%;--pdur:${3+Math.random()*5}s;--pdel:${Math.random()*6}s;`;
-    pw.appendChild(p);
-  }
-}
-
-/* ─── Why cards 3D tilt ─── */
-document.querySelectorAll('.why-card-3d').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width  - 0.5;
-    const y = (e.clientY - r.top)  / r.height - 0.5;
-    card.style.transform = `perspective(700px) rotateY(${x*9}deg) rotateX(${-y*9}deg) translateZ(10px)`;
-  });
-  card.addEventListener('mouseleave', () => card.style.transform = '');
-});
-</script>
 </body>
 </html>

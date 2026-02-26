@@ -9,6 +9,60 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* ── Page-level responsive fixes ── */
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto !important; }
+  #cursor-dot, #cursor-ring { display: none !important; }
+}
+
+/* WhatsApp float button – mobile */
+@media (max-width: 767px) {
+  .float-wa {
+    width: 50px !important;
+    height: 50px !important;
+    bottom: 20px !important;
+    right: 18px !important;
+    font-size: 1.3rem !important;
+  }
+  /* Ensure last section doesn't get covered by WA button */
+  body { padding-bottom: 80px; }
+  footer { margin-bottom: 0 !important; }
+}
+
+/* CTA section button stack on mobile */
+@media (max-width: 767px) {
+  .cta-section .d-flex { flex-direction: column; align-items: center; }
+  .cta-section .btn-gold,
+  .cta-section .btn-gold-outline,
+  .cta-section .btn-dark { width: 100%; max-width: 300px; justify-content: center; }
+}
+</style>
+
+<style>
+/* About page responsive */
+@media (max-width: 991px) {
+  /* Story section image */
+  .col-lg-6 img[style*="height:480px"] { height: 360px !important; }
+  /* Founder image */
+  .col-lg-5 img[style*="height:500px"] { height: 360px !important; }
+}
+@media (max-width: 767px) {
+  /* Story section image */
+  .col-lg-6 img[style*="height:480px"],
+  .col-lg-6 img[style*="height:360px"] { height: 260px !important; }
+  /* Founder image */
+  .col-lg-5 img[style*="height:500px"],
+  .col-lg-5 img[style*="height:360px"] { height: 240px !important; }
+  /* founder mini stats */
+  div[style*="display:flex;gap:28px"] { gap: 18px !important; }
+  div[style*="font-size:2rem;font-weight:900;color:var(--gold)"] { font-size: 1.5rem !important; }
+}
+</style>
+
 </head>
 <body data-page="about">
 <script src="navbar.js"></script>
@@ -71,7 +125,7 @@
       <div class="gold-divider mx-auto mt-3"></div>
     </div>
     <div class="timeline">
-      <div class="timeline-item" data-aos="fade-right">
+      <div class="timeline-item" data-aos="fade-up">
         <div class="timeline-content">
           <div class="timeline-year">1993</div>
           <h5 style="font-weight:700;margin-bottom:8px;font-size:1.1rem;">The First Salon</h5>
@@ -80,7 +134,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-spacer"></div>
       </div>
-      <div class="timeline-item" data-aos="fade-left">
+      <div class="timeline-item" data-aos="fade-up">
         <div class="timeline-spacer"></div>
         <div class="timeline-dot"></div>
         <div class="timeline-content">
@@ -89,7 +143,7 @@
           <p style="font-family:var(--font-elegant);color:var(--gray);font-size:1.02rem;line-height:1.75;">Expansion to 10+ cities. Looks becomes the first professional salon chain in India with a scalable franchise model.</p>
         </div>
       </div>
-      <div class="timeline-item" data-aos="fade-right">
+      <div class="timeline-item" data-aos="fade-up">
         <div class="timeline-content">
           <div class="timeline-year">2010</div>
           <h5 style="font-weight:700;margin-bottom:8px;font-size:1.1rem;">100 Outlets Milestone</h5>
@@ -98,7 +152,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-spacer"></div>
       </div>
-      <div class="timeline-item" data-aos="fade-left">
+      <div class="timeline-item" data-aos="fade-up">
         <div class="timeline-spacer"></div>
         <div class="timeline-dot"></div>
         <div class="timeline-content">

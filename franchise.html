@@ -9,6 +9,69 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* ── Page-level responsive fixes ── */
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto !important; }
+  #cursor-dot, #cursor-ring { display: none !important; }
+}
+
+/* WhatsApp float button – mobile */
+@media (max-width: 767px) {
+  .float-wa {
+    width: 50px !important;
+    height: 50px !important;
+    bottom: 20px !important;
+    right: 18px !important;
+    font-size: 1.3rem !important;
+  }
+  /* Ensure last section doesn't get covered by WA button */
+  body { padding-bottom: 80px; }
+  footer { margin-bottom: 0 !important; }
+}
+
+/* CTA section button stack on mobile */
+@media (max-width: 767px) {
+  .cta-section .d-flex { flex-direction: column; align-items: center; }
+  .cta-section .btn-gold,
+  .cta-section .btn-gold-outline,
+  .cta-section .btn-dark { width: 100%; max-width: 300px; justify-content: center; }
+}
+</style>
+
+<style>
+/* Franchise page responsive */
+@media (max-width: 991px) {
+  /* Hero section */
+  section[style*="min-height:75vh"] { min-height: 60vh !important; }
+  section[style*="min-height:75vh"] h1 { font-size: clamp(2.2rem, 6vw, 4rem) !important; }
+  /* Hero buttons */
+  section[style*="min-height:75vh"] .d-flex { flex-wrap: wrap; }
+}
+@media (max-width: 767px) {
+  /* Hero */
+  section[style*="min-height:75vh"] { min-height: auto !important; padding: 80px 0 60px !important; }
+  section[style*="min-height:75vh"] .py-5 { padding: 0 !important; }
+  section[style*="min-height:75vh"] h1 { font-size: clamp(2rem, 8vw, 3rem) !important; }
+  section[style*="min-height:75vh"] p { font-size: 1rem !important; }
+  section[style*="min-height:75vh"] .d-flex { flex-direction: column; align-items: flex-start; gap: 12px !important; }
+  section[style*="min-height:75vh"] .btn-gold,
+  section[style*="min-height:75vh"] .btn-outline-white { width: 100%; justify-content: center; }
+  /* ROI chart box padding */
+  .roi-bar-wrap { padding: 22px 16px !important; }
+  div[style*="padding:36px"][style*="border-radius:20px"] { padding: 22px 16px !important; }
+  /* Bar chart height */
+  .row.g-2[style*="height:200px"] { height: 150px !important; }
+  /* Accordion */
+  .accordion-body { font-size: 0.95rem !important; padding: 12px 16px !important; }
+  /* Process timeline */
+  .process-timeline { padding-bottom: 0; }
+}
+</style>
+
 </head>
 <body data-page="franchise">
 <script src="navbar.js"></script>
@@ -25,7 +88,7 @@
       <p style="font-family:var(--font-elegant);font-size:1.18rem;color:rgba(255,255,255,0.62);line-height:1.82;margin-bottom:36px;max-width:520px;">Join India's fastest-growing premium salon franchise. 30+ years of brand legacy, proven business model, and complete operational support.</p>
       <div class="d-flex gap-3 flex-wrap">
         <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20the%20Looks%20Salon%20Franchise" target="_blank" class="btn-gold"><i class="fab fa-whatsapp"></i> Talk to Us Now</a>
-        <a href="mailto:info@lookssalon.in?subject=Franchise%20Inquiry&body=Hello%2C%20I%20am%20interested%20in%20franchise." class="btn-outline-white"><i class="fas fa-envelope"></i> Send Enquiry</a>
+        <a href="/cdn-cgi/l/email-protection#533a3d353c133f3c3c382020323f3c3d7d3a3d6c202631393630276e1521323d303b3a20367661631a3d22263a212a75313c372a6e1b363f3f3c7661107661631a766163323e7661633a3d27362136202736377661633a3d7661633521323d303b3a20367d" class="btn-outline-white"><i class="fas fa-envelope"></i> Send Enquiry</a>
       </div>
     </div>
   </div>
